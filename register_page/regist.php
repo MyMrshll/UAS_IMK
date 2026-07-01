@@ -13,6 +13,10 @@ if (isset($_POST['register'])) {
 
     // Cek email sudah ada atau belum
     $cek = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
+    
+    if (!$cek) {
+        die("Query Error (SELECT users): " . mysqli_error($conn));
+    }
 
     if (mysqli_num_rows($cek) > 0) {
         echo "
@@ -28,6 +32,10 @@ if (isset($_POST['register'])) {
         (nama, email, password, role) 
         VALUES 
         ('$nama','$email','$hash_password','$role')");
+
+        if (!$query) {
+            die("Query Error (INSERT users): " . mysqli_error($conn));
+        }
 
         if ($query) {
             echo "
