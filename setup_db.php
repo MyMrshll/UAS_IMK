@@ -65,13 +65,13 @@ $queries = [
 
     // Dummy Products for Seller 1
     "INSERT IGNORE INTO products (id, seller_id, nama_produk, harga, deskripsi, gambar, stok) VALUES 
-    (1, 1, 'Kopi Gayo Premium', 55000, 'Kopi arabika asli Gayo dengan aroma khas dan nikmat.', '', 50)",
+    (1, 1, 'Keripik Tempe', 15000, 'Keripik tempe renyah dan gurih khas daerah.', '1782902284_Keripik Tempe.jpeg', 50)",
     
     "INSERT IGNORE INTO products (id, seller_id, nama_produk, harga, deskripsi, gambar, stok) VALUES 
-    (2, 1, 'Kerajinan Anyaman Bambu', 120000, 'Kerajinan tangan lokal berkualitas tinggi, cocok untuk hiasan.', '', 15)",
+    (2, 1, 'Baju Adat Gayo Aceh', 350000, 'Baju adat khas Gayo Aceh asli, bahan nyaman dipakai.', '1782902532_Baju Adat Gayo Aceh.jpeg', 15)",
     
     "INSERT IGNORE INTO products (id, seller_id, nama_produk, harga, deskripsi, gambar, stok) VALUES 
-    (3, 1, 'Kain Batik Tulis', 250000, 'Kain batik motif tradisional dibuat langsung oleh pengrajin lokal.', '', 10)"
+    (3, 1, 'Kerajinan Tangan Khas', 50000, 'Produk kerajinan UMKM berkualitas tinggi.', '1782901269_images.jpg', 10)"
 ];
 
 foreach ($queries as $sql) {
