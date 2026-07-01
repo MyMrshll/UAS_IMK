@@ -52,7 +52,26 @@ $queries = [
         harga DECIMAL(10,2) NOT NULL,
         FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
         FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
-    )"
+    )",
+
+    // --- DUMMY DATA ---
+    // User Seller: seller@example.com / password: password123
+    "INSERT IGNORE INTO users (id, nama, email, password, role) VALUES 
+    (1, 'Toko Budi', 'seller@example.com', 'password123', 'seller')",
+
+    // User Buyer: buyer@example.com / password: password123
+    "INSERT IGNORE INTO users (id, nama, email, password, role) VALUES 
+    (2, 'Andi Pembeli', 'buyer@example.com', 'password123', 'buyer')",
+
+    // Dummy Products for Seller 1
+    "INSERT IGNORE INTO products (id, seller_id, nama_produk, harga, deskripsi, gambar, stok) VALUES 
+    (1, 1, 'Kopi Gayo Premium', 55000, 'Kopi arabika asli Gayo dengan aroma khas dan nikmat.', '', 50)",
+    
+    "INSERT IGNORE INTO products (id, seller_id, nama_produk, harga, deskripsi, gambar, stok) VALUES 
+    (2, 1, 'Kerajinan Anyaman Bambu', 120000, 'Kerajinan tangan lokal berkualitas tinggi, cocok untuk hiasan.', '', 15)",
+    
+    "INSERT IGNORE INTO products (id, seller_id, nama_produk, harga, deskripsi, gambar, stok) VALUES 
+    (3, 1, 'Kain Batik Tulis', 250000, 'Kain batik motif tradisional dibuat langsung oleh pengrajin lokal.', '', 10)"
 ];
 
 foreach ($queries as $sql) {
@@ -63,6 +82,11 @@ foreach ($queries as $sql) {
     }
 }
 
-echo "<h3>Setup Selesai! Hapus file ini setelah dijalankan.</h3>";
-echo "<a href='index.php'>Kembali ke Aplikasi</a>";
+echo "<h3>Setup & Dummy Data Berhasil Dibuat!</h3>";
+echo "<ul>
+        <li><b>Akun Penjual:</b> seller@example.com | <b>Password:</b> password123</li>
+        <li><b>Akun Pembeli:</b> buyer@example.com | <b>Password:</b> password123</li>
+      </ul>";
+echo "<p>Hapus file ini setelah dijalankan untuk keamanan.</p>";
+echo "<a href='index.php'>Kembali ke Aplikasi (Login)</a>";
 ?>
