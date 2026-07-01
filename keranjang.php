@@ -13,6 +13,7 @@ $buyer_id = $_SESSION['user_id'];
 if (isset($_GET['hapus'])) {
     $id_cart = mysqli_real_escape_string($conn, $_GET['hapus']);
     $hapus_query = mysqli_query($conn, "DELETE FROM carts WHERE id='$id_cart' AND buyer_id='$buyer_id'");
+    if (!$hapus_query) die("Query Error (DELETE carts): " . mysqli_error($conn));
     if ($hapus_query) {
         header("Location: keranjang.php?status=terhapus");
         exit;
@@ -26,6 +27,8 @@ FROM carts
 JOIN products ON carts.product_id = products.id
 WHERE carts.buyer_id='$buyer_id'
 ");
+
+if (!$query) die("Query Error (SELECT carts JOIN products): " . mysqli_error($conn));
 
 $total = 0;
 ?>

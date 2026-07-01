@@ -192,6 +192,7 @@ if (isset($_GET['hapus'])) {
             <?php 
             $id_edit = mysqli_real_escape_string($conn, $_GET['id'] ?? '');
             $ambil_data = mysqli_query($conn, "SELECT * FROM products WHERE id='$id_edit'");
+            if (!$ambil_data) die("Query Error (SELECT products edit): " . mysqli_error($conn));
             $data = mysqli_fetch_assoc($ambil_data);
 
             if (!$data) {
@@ -276,6 +277,7 @@ if (isset($_GET['hapus'])) {
                         <?php 
                         $no = 1;
                         $query = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
+                        if (!$query) die("Query Error (SELECT products): " . mysqli_error($conn));
                         if ($query && mysqli_num_rows($query) > 0) {
                             while ($row = mysqli_fetch_assoc($query)) { 
                                 $nama = $row['nama_produk'] ?? $row['name'] ?? $row['nama'] ?? 'Tanpa Nama';

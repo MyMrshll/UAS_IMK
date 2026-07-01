@@ -18,28 +18,33 @@ if (isset($_POST['add_to_cart'])) {
     if ($qty > 0) {
         // Cek dulu apakah produk ini sudah ada di keranjang buyer
         $cek_keranjang = mysqli_query($conn, "SELECT * FROM carts WHERE buyer_id='$buyer_id' AND product_id='$product_id'");
+        if (!$cek_keranjang) die("Query Error (SELECT carts): " . mysqli_error($conn));
         
         if (mysqli_num_rows($cek_keranjang) > 0) {
             // Jika sudah ada, tinggal update kuantitas/nominal barangnya
             $data_cart = mysqli_fetch_assoc($cek_keranjang);
             $qty_baru = $data_cart['qty'] + $qty;
             $update = mysqli_query($conn, "UPDATE carts SET qty='$qty_baru' WHERE buyer_id='$buyer_id' AND product_id='$product_id'");
-            $alert = $update ? 'sukses' : 'gagal';
+            if (!$update) die("Query Error (UPDATE carts): " . mysqli_error($conn));
+            $alert = 'sukses';
         } else {
             // Jika belum ada, lakukan insert data baru
             $insert = mysqli_query($conn, "INSERT INTO carts (buyer_id, product_id, qty) VALUES ('$buyer_id', '$product_id', '$qty')");
-            $alert = $insert ? 'sukses' : 'gagal';
+            if (!$insert) die("Query Error (INSERT carts): " . mysqli_error($conn));
+            $alert = 'sukses';
         }
     }
 }
 
 // Ambil total nominal item unik di keranjang untuk badge navbar
 $query_badge = mysqli_query($conn, "SELECT SUM(qty) as total_item FROM carts WHERE buyer_id='$buyer_id'");
+if (!$query_badge) die("Query Error (SELECT SUM carts): " . mysqli_error($conn));
 $data_badge = mysqli_fetch_assoc($query_badge);
 $total_keranjang = $data_badge['total_item'] ?? 0;
 
 // Ambil semua produk untuk katalog
 $query = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
+if (!$query) die("Query Error (SELECT products): " . mysqli_error($conn));
 ?>
 
 <!DOCTYPE html>

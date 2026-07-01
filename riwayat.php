@@ -14,6 +14,8 @@ SELECT * FROM orders
 WHERE buyer_id='$buyer_id'
 ORDER BY id DESC
 ");
+
+if (!$query) die("Query Error (SELECT orders): " . mysqli_error($conn));
 ?>
 
 <!DOCTYPE html>

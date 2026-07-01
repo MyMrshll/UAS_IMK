@@ -2,9 +2,10 @@
 session_start();
 include 'config/koneksi.php';
 
-$id = $_GET['id'];
+$id = mysqli_real_escape_string($conn, $_GET['id']);
 
 $query = mysqli_query($conn, "SELECT * FROM products WHERE id='$id'");
+if (!$query) die("Query Error (SELECT products): " . mysqli_error($conn));
 
 $product = mysqli_fetch_assoc($query);
 ?>

@@ -16,6 +16,7 @@ FROM carts
 JOIN products ON carts.product_id = products.id
 WHERE carts.buyer_id='$buyer_id'
 ");
+if (!$query) die("Query Error (SELECT carts): " . mysqli_error($conn));
 
 $total = 0;
 $items = [];
@@ -37,6 +38,9 @@ if ($total > 0) {
     VALUES
     ('$buyer_id','$total')
     ");
+    if (!mysqli_affected_rows($conn) && mysqli_error($conn)) {
+        die("Query Error (INSERT orders): " . mysqli_error($conn));
+    }
 
     $order_id = mysqli_insert_id($conn);
 
@@ -53,6 +57,9 @@ if ($total > 0) {
             '{$item['harga']}'
         )
         ");
+        if (mysqli_error($conn)) {
+            die("Query Error (INSERT order_items): " . mysqli_error($conn));
+        }
     }
 
     // Kosongkan cart
@@ -60,6 +67,9 @@ if ($total > 0) {
     DELETE FROM carts
     WHERE buyer_id='$buyer_id'
     ");
+    if (mysqli_error($conn)) {
+        die("Query Error (DELETE carts): " . mysqli_error($conn));
+    }
 
     $checkout_sukses = true;
 }
