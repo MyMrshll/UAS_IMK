@@ -7,10 +7,9 @@ $error_msg = ""; // Variabel penampung pesan eror
 if (isset($_POST['login'])) {
     $email = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];
-    $role = $_POST['role'];
 
-    // Ambil data user berdasarkan email dan role
-    $query = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND role='$role'");
+    // Ambil data user berdasarkan email
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE email='$email'");
 
     if (!$query) {
         die("Query Error (SELECT users): " . mysqli_error($conn));
@@ -36,8 +35,7 @@ if (isset($_POST['login'])) {
         } else {
             $error_msg = "Password yang Anda masukkan salah.";
         }
-    } else {
-        $error_msg = "Email atau peran (role) tidak ditemukan.";
+        $error_msg = "Email tidak ditemukan.";
     }
 }
 ?>
@@ -95,12 +93,6 @@ if (isset($_POST['login'])) {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             vertical-align: middle;
         }
-        /* Style kustom untuk menyembunyikan radio default dan mempercantik tombol pilihan aktif */
-        .role-option input:checked + label {
-            background-color: #00236f !important;
-            color: white !important;
-            border-color: #00236f !important;
-        }
     </style>
 </head>
 <body class="bg-background text-on-background p-4 md:p-0">
@@ -125,25 +117,6 @@ if (isset($_POST['login'])) {
                 <?php endif; ?>
 
                 <form class="flex flex-col gap-4" method="POST" action="">
-                    <div class="space-y-2">
-                        <label class="text-sm font-bold text-on-surface">Masuk Sebagai</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="role-option">
-                                <input checked class="hidden" id="role-pembeli" name="role" type="radio" value="buyer" />
-                                <label class="flex items-center justify-center gap-2 p-3 rounded-lg border border-outline-variant text-sm font-medium cursor-pointer transition-all hover:bg-surface-container-low" for="role-pembeli">
-                                    <span class="material-symbols-outlined text-[18px]">shopping_basket</span>
-                                    Pembeli
-                                </label>
-                            </div>
-                            <div class="role-option">
-                                <input class="hidden" id="role-penjual" name="role" type="radio" value="seller" />
-                                <label class="flex items-center justify-center gap-2 p-3 rounded-lg border border-outline-variant text-sm font-medium cursor-pointer transition-all hover:bg-surface-container-low" for="role-penjual">
-                                    <span class="material-symbols-outlined text-[18px]">storefront</span>
-                                    Penjual
-                                </label>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-on-surface" for="email">Email</label>
