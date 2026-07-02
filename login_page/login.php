@@ -35,6 +35,7 @@ if (isset($_POST['login'])) {
         } else {
             $error_msg = "Password yang Anda masukkan salah.";
         }
+    } else {
         $error_msg = "Email tidak ditemukan.";
     }
 }
