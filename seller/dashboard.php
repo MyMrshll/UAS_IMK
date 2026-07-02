@@ -113,9 +113,9 @@ if (isset($_GET['hapus'])) {
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f3f4f6; }
     </style>
 </head>
-<body class="min-h-screen flex">
+<body class="min-h-screen flex flex-col md:flex-row">
 
-    <div class="w-64 bg-blue-900 text-white flex flex-col min-h-screen p-6 fixed">
+    <div class="w-full md:w-64 bg-blue-900 text-white flex flex-col md:min-h-screen p-6 relative md:fixed">
         <h1 class="text-2xl font-bold mb-8">UMKM Seller</h1>
         <nav class="flex flex-col gap-4 flex-1">
             <a href="?page=dashboard" class="flex items-center gap-3 p-3 rounded-lg transition-all <?= $page == 'dashboard' ? 'bg-blue-700 font-semibold shadow-inner' : 'hover:bg-blue-800' ?>">
@@ -133,7 +133,7 @@ if (isset($_GET['hapus'])) {
         </nav>
     </div>
 
-    <div class="flex-1 ml-64 p-8">
+    <div class="flex-1 md:ml-64 p-4 md:p-8">
         
         <?php if ($page == 'dashboard'): ?>
             <div class="bg-white p-8 rounded-2xl shadow-md max-w-3xl border border-gray-200">
@@ -142,7 +142,7 @@ if (isset($_GET['hapus'])) {
                 </h1>
                 <p class="text-gray-500 mt-2">Kelola operasional dan produk jualan UMKM Anda dengan mudah di sini.</p>
                 
-                <div class="grid grid-cols-2 gap-4 mt-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
                     <a href="?page=daftar_produk" class="p-6 bg-blue-50 rounded-xl border border-blue-100 hover:bg-blue-100 transition block">
                         <span class="material-symbols-outlined text-blue-600 text-3xl">inventory</span>
                         <h3 class="font-bold text-gray-800 mt-2">Lihat Produk</h3>
@@ -260,8 +260,8 @@ if (isset($_GET['hapus'])) {
                 </a>
             </div>
 
-            <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
-                <table class="w-full text-left border-collapse">
+            <div class="bg-white rounded-xl shadow-md overflow-x-auto border border-gray-200">
+                <table class="w-full text-left border-collapse min-w-[800px]">
                     <thead>
                         <tr class="bg-gray-50 border-b border-gray-200 text-gray-700 font-semibold text-sm">
                             <th class="p-4 w-16 text-center">No</th>

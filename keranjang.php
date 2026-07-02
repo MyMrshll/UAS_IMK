@@ -61,9 +61,9 @@ $total = 0;
     </a>
 </nav>
 
-<div class="max-w-5xl mx-auto p-10">
+<div class="max-w-5xl mx-auto p-4 md:p-10">
 
-    <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+    <div class="bg-white rounded-2xl shadow-lg p-4 md:p-8 border border-gray-100">
 
         <?php 
         if (mysqli_num_rows($query) > 0) {
@@ -72,7 +72,7 @@ $total = 0;
                 $total += $subtotal;
         ?>
 
-        <div class="flex items-center gap-5 border-b py-5 hover:bg-gray-50/50 px-2 rounded-xl transition">
+        <div class="flex flex-col sm:flex-row text-center sm:text-left items-center gap-5 border-b py-5 hover:bg-gray-50/50 px-2 rounded-xl transition">
 
             <img src="assets/uploads/<?php echo $cart['gambar']; ?>" class="w-28 h-28 object-cover rounded-xl border border-gray-200 shadow-sm">
 
@@ -85,7 +85,7 @@ $total = 0;
                 </p>
             </div>
 
-            <div class="text-right flex flex-col items-end gap-3">
+            <div class="sm:text-right flex flex-col items-center sm:items-end gap-3 w-full sm:w-auto">
                 <p class="font-bold text-blue-900 text-xl">
                     Rp <?php echo number_format($subtotal, 0, ',', '.'); ?>
                 </p>

@@ -95,7 +95,7 @@ if (!$query) die("Query Error (SELECT products): " . mysqli_error($conn));
 
     </nav>
 
-    <div class="max-w-7xl mx-auto p-10">
+    <div class="max-w-7xl mx-auto p-4 md:p-10">
 
         <div class="mb-8">
             <h1 class="text-3xl font-bold text-gray-800 mb-1">

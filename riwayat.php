@@ -43,13 +43,13 @@ if (!$query) die("Query Error (SELECT orders): " . mysqli_error($conn));
 
     </nav>
 
-    <div class="max-w-5xl mx-auto p-10">
+    <div class="max-w-5xl mx-auto p-4 md:p-10">
 
-        <div class="bg-white rounded-2xl shadow-lg p-8">
+        <div class="bg-white rounded-2xl shadow-lg p-4 md:p-8">
 
             <?php while ($order = mysqli_fetch_assoc($query)) { ?>
 
-                <div class="border-b py-5 flex justify-between items-center">
+                <div class="border-b py-5 flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-3">
 
                     <div>
 
@@ -63,7 +63,7 @@ if (!$query) die("Query Error (SELECT orders): " . mysqli_error($conn));
 
                     </div>
 
-                    <div class="text-right">
+                    <div class="sm:text-right w-full sm:w-auto">
 
                         <p class="text-blue-900 font-bold text-xl">
                             Rp <?php echo number_format($order['total_harga']); ?>

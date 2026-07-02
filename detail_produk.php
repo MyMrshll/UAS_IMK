@@ -37,9 +37,9 @@ $product = mysqli_fetch_assoc($query);
     </nav>
 
     <!-- Content -->
-    <div class="max-w-6xl mx-auto p-10">
+    <div class="max-w-6xl mx-auto p-4 md:p-10">
 
-        <div class="bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-2 gap-10 p-10">
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 p-6 md:p-10">
 
             <!-- Gambar -->
             <div>
@@ -72,10 +72,8 @@ $product = mysqli_fetch_assoc($query);
                 </p>
 
                 <!-- Button -->
-                <a href="add_to_cart.php?id=<?php echo $product['id']; ?>">
-
+                <a href="add_to_cart.php?id=<?php echo $product['id']; ?>" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-xl transition text-center shadow-md">
                     Tambah ke Keranjang
-
                 </a>
 
             </div>
